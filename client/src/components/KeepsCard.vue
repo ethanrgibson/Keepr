@@ -10,11 +10,16 @@ defineProps({
 
 
 <template>
-  <div class="rounded shadow-lg">
-    <div class="position-relative">
+  <div class="rounded shadow-lg position-relative">
+    <div class="">
       <img :src="keep.imgUrl" :alt="'A Picture Submitted by' + keep.creator.name" class="img-fluid rounded">
+    </div>
+    <div class="profile-info p-2 d-flex justify-content-between align-items-center">
       <div>
-        <b class="keep-name text-dark fs-5">{{ keep.name }}</b>
+        <b class="keep-name text-white fs-5">{{ keep.name }}</b>
+      </div>
+      <div>
+        <img :src="keep.creator.picture" :alt="'Profile picture for ' + keep.creator.name" class="profile-img">
       </div>
     </div>
   </div>
@@ -23,9 +28,18 @@ defineProps({
 
 <style lang="scss" scoped>
 .keep-name {
+  text-shadow: 1px 1px 2px black;
+}
 
+.profile-img {
+  max-height: 5dvh;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.profile-info {
   position: absolute;
   bottom: 0;
-
+  width: 100%;
 }
 </style>
