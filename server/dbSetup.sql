@@ -6,3 +6,9 @@ CREATE TABLE IF NOT EXISTS accounts(
   email VARCHAR(255) UNIQUE COMMENT 'User Email',
   picture VARCHAR(255) COMMENT 'User Picture'
 ) default charset utf8mb4 COMMENT '';
+
+ALTER TABLE accounts
+ADD cover_img VARCHAR(1000);
+
+SELECT * FROM accounts;
+
