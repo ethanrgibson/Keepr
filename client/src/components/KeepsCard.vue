@@ -8,10 +8,10 @@ defineProps({
   keep: { type: Keep, required: true }
 })
 
-async function setActiveKeep(keep) {
+async function setActiveKeep(keepId) {
 
   try {
-    await keepsService.setActiveKeep(keep)
+    await keepsService.setActiveKeep(keepId)
   }
   catch (error) {
     Pop.error(error);
@@ -23,7 +23,7 @@ async function setActiveKeep(keep) {
 
 
 <template>
-  <div @click="setActiveKeep(keep)" role="button" type="button" title="View Keep Information" data-bs-toggle="modal"
+  <div @click="setActiveKeep(keep.id)" role="button" type="button" title="View Keep Information" data-bs-toggle="modal"
     data-bs-target="#keepModal" class="rounded shadow-lg position-relative">
     <div class="">
       <img :src="keep.imgUrl" :alt="'A Picture Submitted by' + keep.creator.name" class="img-fluid rounded">
