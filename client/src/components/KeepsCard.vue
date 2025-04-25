@@ -42,7 +42,7 @@ async function setActiveKeep(keepId) {
 
 <style lang="scss" scoped>
 .keep-name {
-  text-shadow: 1px 1px 2px black;
+  text-shadow: 1px 1px 4px black;
 }
 
 .profile-img {

@@ -13,7 +13,7 @@ const keep = computed(() => AppState.activeKeep)
   <div class="modal fade" id="keepModal" tabindex="-1" aria-labelledby="keepModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <div class="container-fluid">
+        <div v-if="keep" class="container-fluid">
           <div class="row">
             <div class="col-md-6 p-0">
               <div>
