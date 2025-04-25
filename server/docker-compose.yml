@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    image: your-dockerhub-username/keeper_final:latest
+    restart: unless-stopped
+    env_file:
+      - keeper_final-env
+    ports:
+      - "7045:80"
