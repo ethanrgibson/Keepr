@@ -1,6 +1,7 @@
 
 
 
+
 namespace keeper_final.Repositories;
 
 public class KeepsRepository
@@ -80,4 +81,23 @@ WHERE keeps.id = @keepId;";
     return keep;
   }
 
+  internal void UpdateKeep(Keep keep)
+  {
+    string sql = @"
+
+UPDATE keeps
+SET 
+name = @Name,
+description = @Description
+WHERE id = @id
+Limit 1;";
+
+    int rowsAffected = _db.Execute(sql, keep);
+
+
+    if (rowsAffected != 1)
+    {
+      throw new Exception(rowsAffected + " rows were affected. And that's a problem!");
+    }
+  }
 }

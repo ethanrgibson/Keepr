@@ -3,6 +3,7 @@
 
 
 
+
 namespace keeper_final.Services;
 
 public class KeepsService
@@ -34,5 +35,22 @@ public class KeepsService
     return keep;
   }
 
+  internal Keep UpdateKeep(int keepId, Keep keepData, Account userInfo)
+  {
+    Keep keep = GetKeepById(keepId);
 
+    if (keep.CreatorId != userInfo.Id)
+    {
+      throw new Exception("YOU CANNOT EDIT ANOTHER USER'S KEEP, JERK");
+    }
+
+    keep.Name = keepData.Name ?? keep.Name;
+    keep.Description = keepData.Description ?? keep.Description;
+
+    _repository.UpdateKeep(keep);
+
+    return keep;
+
+
+  }
 }

@@ -44,7 +44,7 @@ async function getAllKeeps() {
 
 <style scoped lang="scss">
 .masonry-container {
-  columns: 275px;
+  columns: 400px;
 }
 
 .masonry-container>* {
