@@ -1,4 +1,5 @@
 
+
 namespace keeper_final.Repositories;
 
 public class KeepsRepository
@@ -15,16 +16,16 @@ public class KeepsRepository
   {
     string sql = @"
 
-INSERT INTO 
-keeps(name, description, img, creator_id)
-VALUES(@Name, @Description, @Img, @CreatorId);
+    INSERT INTO 
+      keeps(name, description, img, creator_id)
+      VALUES(@Name, @Description, @Img, @CreatorId);
 
-SELECT 
-keeps.*,
-accounts.*
-FROM keeps
-INNER JOIN accounts ON accounts.id = keeps.creator_id
-WHERE keeps.id = LAST_INSERT_ID();";
+    SELECT 
+      keeps.*,
+      accounts.*
+      FROM keeps
+      INNER JOIN accounts ON accounts.id = keeps.creator_id
+      WHERE keeps.id = LAST_INSERT_ID();";
 
     Keep createdKeep = _db.Query(sql, (Keep keep, Profile account) =>
     {
@@ -34,5 +35,26 @@ WHERE keeps.id = LAST_INSERT_ID();";
     }, keepData).SingleOrDefault();
 
     return createdKeep;
+  }
+
+  internal List<Keep> GetKeeps()
+  {
+    string sql =
+@"SELECT 
+  keeps.*,
+  accounts.* 
+  FROM keeps
+  INNER JOIN accounts ON accounts.id = keeps.creator_id;";
+
+    List<Keep> keeps = _db.Query(sql, (Keep keeps, Profile account) =>
+    {
+
+      keeps.Creator = account;
+      return keeps;
+
+    }).ToList();
+
+    return keeps;
+
   }
 }
