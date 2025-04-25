@@ -11,6 +11,11 @@ class KeepsService {
 
   }
 
+  async setActiveKeep(keep) {
+    const response = await api.get(`api/keeps/${keep.id}`)
+    logger.log(response.data)
+  }
+
 }
 
 export const keepsService = new KeepsService()

@@ -1,17 +1,30 @@
 <script setup>
 import { Keep } from '@/models/Keep.js';
+import { keepsService } from '@/services/KeepsService.js';
+import { Pop } from '@/utils/Pop.js';
 
 
 defineProps({
   keep: { type: Keep, required: true }
 })
 
+async function setActiveKeep(keep) {
+
+  try {
+    await keepsService.setActiveKeep(keep)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+
+}
+
 </script>
 
 
 <template>
-  <div role="button" type="button" title="View Keep Information" data-bs-toggle="modal" data-bs-target="#keepModal"
-    class="rounded shadow-lg position-relative">
+  <div @click="setActiveKeep(keep)" role="button" type="button" title="View Keep Information" data-bs-toggle="modal"
+    data-bs-target="#keepModal" class="rounded shadow-lg position-relative">
     <div class="">
       <img :src="keep.imgUrl" :alt="'A Picture Submitted by' + keep.creator.name" class="img-fluid rounded">
     </div>
