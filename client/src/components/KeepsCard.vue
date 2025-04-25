@@ -10,7 +10,8 @@ defineProps({
 
 
 <template>
-  <div class="rounded shadow-lg position-relative">
+  <div role="button" type="button" title="View Keep Information" data-bs-toggle="modal" data-bs-target="#keepModal"
+    class="rounded shadow-lg position-relative">
     <div class="">
       <img :src="keep.imgUrl" :alt="'A Picture Submitted by' + keep.creator.name" class="img-fluid rounded">
     </div>
