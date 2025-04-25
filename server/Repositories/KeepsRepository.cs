@@ -44,7 +44,7 @@ public class KeepsRepository
   keeps.*,
   accounts.* 
   FROM keeps
-  INNER JOIN accounts ON accounts.id = keeps.creator_id;";
+  INNER JOIN accounts ON accounts.id = keeps.creatorid;";
 
     List<Keep> keeps = _db.Query(sql, (Keep keeps, Profile account) =>
     {
