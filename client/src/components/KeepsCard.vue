@@ -10,8 +10,8 @@ defineProps({
 
 
 <template>
-  <div>
-    <img :src="keep.imgUrl" :alt="'A Picture Submitted by' + keep.creator.name" class="img-fluid mb-3">
+  <div class="rounded shadow-lg">
+    <img :src="keep.imgUrl" :alt="'A Picture Submitted by' + keep.creator.name" class="img-fluid rounded">
   </div>
 </template>
 
