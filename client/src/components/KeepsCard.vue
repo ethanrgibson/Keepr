@@ -1,11 +1,17 @@
 <script setup>
+import { Keep } from '@/models/Keep.js';
+
+
+defineProps({
+  keep: { type: Keep, required: true }
+})
 
 </script>
 
 
 <template>
   <div>
-    what it do
+    {{ keep }}
   </div>
 </template>
 
