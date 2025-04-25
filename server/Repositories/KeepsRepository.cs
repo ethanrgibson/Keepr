@@ -100,4 +100,23 @@ Limit 1;";
       throw new Exception(rowsAffected + " rows were affected. And that's a problem!");
     }
   }
+
+  internal void DeleteKeep(int keepId)
+  {
+    string sql = "DELETE FROM keeps WHERE id = @keepId LIMIT 1;";
+
+
+    int rowsAffected = _db.Execute(sql, new { keepId });
+
+    if (rowsAffected == 0)
+    {
+      throw new Exception("No rows affected, nothing deleted");
+    }
+
+    if (rowsAffected > 1)
+    {
+      throw new Exception(rowsAffected + " rows were affected. And that's a problem!");
+    }
+  }
+
 }

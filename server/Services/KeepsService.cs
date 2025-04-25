@@ -32,6 +32,13 @@ public class KeepsService
   internal Keep GetKeepById(int keepId)
   {
     Keep keep = _repository.GetKeepById(keepId);
+
+    if (keep == null)
+    {
+      throw new Exception("This Keep does not exsist!");
+    }
+
+
     return keep;
   }
 
@@ -50,6 +57,23 @@ public class KeepsService
     _repository.UpdateKeep(keep);
 
     return keep;
+
+
+  }
+
+  internal string DeleteKeep(int keepId, Account userInfo)
+  {
+    Keep keep = GetKeepById(keepId);
+
+    if (keep.CreatorId != userInfo.Id)
+    {
+      throw new Exception("YOU CANNOT DELETE ANOTHER USERS KEEP, JERK!");
+    }
+
+    _repository.DeleteKeep(keepId);
+
+    return $"Your {keep.Name} Keep has been deleted!";
+
 
 
   }
