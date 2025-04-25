@@ -29,3 +29,10 @@ CREATE TABLE keeps(
 
 SELECT * FROM keeps;
 
+SELECT 
+keeps.*,
+accounts.*
+FROM keeps
+INNER JOIN accounts ON accounts.id = keeps.creator_id
+WHERE keeps.id = 2;
+
