@@ -30,7 +30,7 @@ async function getAllKeeps() {
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 col-12">
         <div class="masonry-container">
           <div v-for="keep in keeps" :key="keep.id" class="m-2">
             <KeepsCard :keep="keep" />
@@ -44,11 +44,25 @@ async function getAllKeeps() {
 
 <style scoped lang="scss">
 .masonry-container {
-  columns: 200px;
+  columns: 275px;
 }
 
 .masonry-container>* {
   display: inline-block;
   break-inside: avoid;
+}
+
+
+
+
+
+
+@media screen AND (max-width: 768px) {
+
+  .masonry-container {
+    columns: 160px
+  }
+
+
 }
 </style>
