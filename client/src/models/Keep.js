@@ -1,3 +1,4 @@
+import { Profile } from "./Account.js";
 import { DataBaseItem } from "./DataBaseItem.js";
 
 export class Keep extends DataBaseItem {
@@ -10,6 +11,7 @@ export class Keep extends DataBaseItem {
     this.imgUrl = data.img
     this.views = data.views
     this.creatorId = data.creatorId
+    this.creator = new Profile(data.creator)
 
 
 
