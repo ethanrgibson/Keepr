@@ -35,7 +35,8 @@ watch(theme, () => {
               <li role="button" class="btn" data-bs-toggle="modal" data-bs-target="#createKeepModal">
                 New Keep </li>
               <br>
-              <li class="dropdown-item">New Vault</li>
+              <li class="dropdown-item btn" role="button" data-bs-toggle="modal" data-bs-target="#createVaultModal">New
+                Vault</li>
             </ul>
           </div>
         </div>
