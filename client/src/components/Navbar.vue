@@ -24,6 +24,22 @@ watch(theme, () => {
           <p class="m-0 fs-5">Home</p>
         </div>
       </RouterLink>
+      <!-- TODO make this collapse not so weird -->
+      <div class="d-flex align-items-center gap-4">
+        <div class="ms-3 text-center">
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Create
+            </button>
+            <ul class="dropdown-menu text-center bg-purple-subtle">
+              <li type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createKeepModal">
+                New Keep </li>
+              <br>
+              <li>New Vault</li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <div class="text-center">
         <div class="text-dark">
           <b>Keeper Co.</b>
