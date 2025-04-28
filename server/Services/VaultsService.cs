@@ -1,5 +1,6 @@
 
 
+
 namespace keeper_final.Services;
 
 public class VaultsService
@@ -42,7 +43,7 @@ public class VaultsService
     }
 
     vault.Name = vaultUpdateData.Name ?? vault.Name;
-    vault.isPrivate = vaultUpdateData.isPrivate ?? vault.isPrivate;
+    vault.IsPrivate = vaultUpdateData.IsPrivate ?? vault.IsPrivate;
 
     _repository.UpdateVault(vault);
 
@@ -63,5 +64,9 @@ public class VaultsService
 
   }
 
-
+  internal List<Vault> GetVaultsByAccountId(string accountId)
+  {
+    List<Vault> vaults = _repository.GetVaultsByAccountId(accountId);
+    return vaults;
+  }
 }

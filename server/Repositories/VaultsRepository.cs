@@ -1,6 +1,7 @@
 
 
 
+
 namespace keeper_final.Repositories;
 
 public class VaultsRepository
@@ -92,5 +93,24 @@ LIMIT 1;";
     }
   }
 
+  internal List<Vault> GetVaultsByAccountId(string accountId)
+  {
+    string sql = @"
+SELECT 
+vaults.*,
+accounts.*
+FROM vaults
+INNER JOIN accounts ON accounts.id = vaults.creator_id
+WHERE vaults.creator_id = @accountId;";
+
+
+
+    List<Vault> vaults = _db.Query(sql, (Vault vaults, Profile account) =>
+    {
+      vaults.Creator = account;
+      return vaults;
+    }, new { accountId }).ToList();
+    return vaults;
+  }
 
 }
