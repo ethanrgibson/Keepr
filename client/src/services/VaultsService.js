@@ -1,10 +1,13 @@
 import { logger } from "@/utils/Logger.js"
 import { api } from "./AxiosService.js"
+import { Vault } from "@/models/Vault.js"
+import { AppState } from "@/AppState.js"
 
 class VaultsService {
   async createVault(vaultData) {
     const response = await api.post('api/vaults', vaultData)
-    logger.log(response.data)
+    const vault = new Vault(response.data)
+    AppState.vaults.push(vault)
   }
 
 }

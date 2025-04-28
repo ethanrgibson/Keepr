@@ -2,6 +2,7 @@
 import { vaultsService } from '@/services/VaultsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
+import { Modal } from 'bootstrap/dist/js/bootstrap.bundle.js';
 import { ref } from 'vue';
 
 
@@ -18,6 +19,14 @@ async function createVault() {
   try {
 
     await vaultsService.createVault(editableVaultData.value)
+
+    editableVaultData.value = {
+      name: '',
+      img: '',
+      isPrivate: false,
+      description: ''
+    }
+    Modal.getOrCreateInstance('#createKeepModal').hide()
 
   }
   catch (error) {
