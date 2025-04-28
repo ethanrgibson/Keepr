@@ -1,5 +1,6 @@
 
 
+
 namespace keeper_final.Repositories;
 
 public class VaultsRepository
@@ -57,4 +58,26 @@ WHERE vaults.id = @VaultId;";
 
     return foundVault;
   }
+
+  internal void UpdateVault(Vault vaultUpdated)
+  {
+    string sql = @"
+
+UPDATE vaults
+SET
+name = @Name,
+is_private = @isPrivate
+WHERE id = @Id 
+LIMIT 1;";
+
+    int rowsAffected = _db.Execute(sql, vaultUpdated);
+
+    if (rowsAffected != 1)
+    {
+      throw new Exception(rowsAffected + " rows affected, and that is not good!");
+
+    }
+  }
+
+
 }

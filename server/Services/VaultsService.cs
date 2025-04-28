@@ -30,4 +30,21 @@ public class VaultsService
 
     return vault;
   }
+
+  internal Vault UpdateVault(int vaultId, Account userInfo, Vault vaultUpdateData)
+  {
+    Vault vault = GetVaultById(vaultId);
+
+    if (vault.CreatorId != userInfo.Id)
+    {
+      throw new Exception("YOU CANNOT UPDATE A VAULT THAT IS NOT YOURS");
+    }
+
+    vault.Name = vaultUpdateData.Name ?? vault.Name;
+    vault.isPrivate = vaultUpdateData.isPrivate ?? vault.isPrivate;
+
+    _repository.UpdateVault(vault);
+
+    return vault;
+  }
 }
