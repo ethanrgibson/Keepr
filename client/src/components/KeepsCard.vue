@@ -26,7 +26,14 @@ async function setActiveKeep(keepId) {
 // TODO fix weird styling of button.
 async function deleteKeep(keep) {
   try {
-    logger.log('deleting keep' + keep)
+
+    const confirmed = await Pop.confirm('Sure you want to delete this keep?')
+
+    if (!confirmed) {
+      return
+    }
+
+    await keepsService.deleteKeep(keep)
   }
   catch (error) {
     Pop.error(error);
@@ -41,7 +48,7 @@ async function deleteKeep(keep) {
   <div class="position-relative">
     <div v-if="keep.creatorId == account?.id" @click="deleteKeep(keep)" class="delete-button" role="button"
       title="Delete Keep">
-      <span class="mdi mdi-alpha-x-box-outline text-danger fs-4"></span>
+      <span class="mdi mdi-alpha-x-box text-danger fs-4"></span>
     </div>
     <div @click="setActiveKeep(keep.id)" role="button" type="button" title="View Keep Information"
       data-bs-toggle="modal" data-bs-target="#keepModal" class="rounded shadow-lg">
