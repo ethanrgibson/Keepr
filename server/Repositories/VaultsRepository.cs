@@ -1,4 +1,5 @@
 
+
 namespace keeper_final.Repositories;
 
 public class VaultsRepository
@@ -35,5 +36,25 @@ WHERE vaults.id =  LAST_INSERT_ID();";
     return createdVault;
 
 
+  }
+
+  internal Vault GetVaultById(int vaultId)
+  {
+    string sql = @"
+
+SELECT 
+vaults.*,
+accounts.*
+FROM vaults
+INNER JOIN accounts ON accounts.id = vaults.creator_id
+WHERE vaults.id = @VaultId;";
+
+    Vault foundVault = _db.Query(sql, (Vault vault, Profile account) =>
+    {
+      vault.Creator = account;
+      return vault;
+    }, new { vaultId }).SingleOrDefault();
+
+    return foundVault;
   }
 }
