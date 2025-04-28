@@ -47,9 +47,11 @@ const keep = computed(() => AppState.activeKeep)
                     </div>
                   </div>
                   <div>
-                    <img :src="keep.creator.picture" :alt="'Profile Picture of ' + keep.creator.name"
-                      class="profile-img me-2">
-                    <span>{{ keep.creator.name }}</span>
+                    <RouterLink :to="{ name: 'Account' }">
+                      <img :src="keep.creator.picture" :alt="'Profile Picture of ' + keep.creator.name"
+                        class="profile-img me-2">
+                      <span>{{ keep.creator.name }}</span>
+                    </RouterLink>
                   </div>
                 </div>
               </div>
@@ -75,5 +77,11 @@ const keep = computed(() => AppState.activeKeep)
   max-height: 5dvh;
   aspect-ratio: 1/1;
   border-radius: 50%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+
 }
 </style>
