@@ -1,9 +1,12 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { Keep } from '@/models/Keep.js';
 import { keepsService } from '@/services/KeepsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
+import { computed } from 'vue';
 
+const account = computed(() => AppState.account)
 
 defineProps({
   keep: { type: Keep, required: true }
@@ -19,6 +22,8 @@ async function setActiveKeep(keepId) {
   }
 
 }
+
+// TODO fix weird styling of button.
 async function deleteKeep(keep) {
   try {
     logger.log('deleting keep' + keep)
@@ -34,7 +39,8 @@ async function deleteKeep(keep) {
 
 <template>
   <div class="position-relative">
-    <div @click="deleteKeep(keep)" class="delete-button" role="button" title="Delete Keep">
+    <div v-if="keep.creatorId == account?.id" @click="deleteKeep(keep)" class="delete-button" role="button"
+      title="Delete Keep">
       <span class="mdi mdi-alpha-x-box-outline text-danger fs-4"></span>
     </div>
     <div @click="setActiveKeep(keep.id)" role="button" type="button" title="View Keep Information"
