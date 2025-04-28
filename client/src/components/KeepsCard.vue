@@ -22,7 +22,7 @@ async function setActiveKeep(keepId) {
 
 }
 
-// TODO fix weird styling of button.
+
 async function deleteKeep(keep) {
   try {
 

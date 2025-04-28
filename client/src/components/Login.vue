@@ -22,8 +22,7 @@ function logout() {
     </button>
     <div v-else>
       <div class="dropdown">
-        <div role="button" class="" data-bs-toggle="dropdown" aria-expanded="false"
-          title="open account menu">
+        <div role="button" class="" data-bs-toggle="dropdown" aria-expanded="false" title="open account menu">
           <div v-if="account?.picture || identity?.picture">
             <img :src="account?.picture || identity?.picture" alt="account photo" height="40" class="user-img" />
           </div>
@@ -32,7 +31,7 @@ function logout() {
           <div class="list-group">
             <RouterLink :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action">
-                Profile Page
+                Account Page
               </div>
             </RouterLink>
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">

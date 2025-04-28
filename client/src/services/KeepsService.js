@@ -30,8 +30,8 @@ class KeepsService {
     const keepIndex = keeps.findIndex(keep => keep.id == keep.id)
     keeps.splice(keepIndex, 1)
     logger.log(response.data)
-
   }
+ 
 }
 
 export const keepsService = new KeepsService()
