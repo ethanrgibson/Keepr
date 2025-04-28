@@ -1,11 +1,34 @@
 <script setup>
+import { keepsService } from '@/services/KeepsService.js';
 import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
+import { Modal } from 'bootstrap/dist/js/bootstrap.bundle.js';
+import { ref } from 'vue';
 
 
+const editableKeepData = ref({
+
+  name: '',
+  img: '',
+  description: ''
+})
 
 
-async function createNewKeep(params) {
-  logger.log('creating new keep')
+async function createNewKeep() {
+  try {
+    await keepsService.createKeep(editableKeepData.value)
+
+    editableKeepData.value = {
+      name: '',
+      img: '',
+      description: ''
+    }
+    Modal.getOrCreateInstance('#createKeepModal').hide()
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+
 
 }
 
@@ -24,15 +47,16 @@ async function createNewKeep(params) {
           <form @submit.prevent="createNewKeep()">
             <div class="mb-2">
               <label for="KeepName">Name Your Keep</label>
-              <input type="text" id="KeepName">
+              <input v-model="editableKeepData.name" type="text" id="KeepName" required minlength="1" maxlength="255">
             </div>
             <div class="mb-2">
               <label for="KeepImgUrl">Image URL...</label>
-              <input type="text" id="KeepImgUrl">
+              <input v-model="editableKeepData.img" type="text" id="KeepImgUrl" required>
             </div>
             <div class="mb-2">
               <label for="KeepDescription">Keep Description</label>
-              <textarea type="text" id="KeepDescription"></textarea>
+              <textarea v-model="editableKeepData.description" type="text" id="KeepDescription" required minlength="1"
+                maxlength="1000"></textarea>
             </div>
             <div class="text-end">
               <button type="submit" class="btn btn-purple">Create!</button>

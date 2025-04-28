@@ -3,7 +3,7 @@ import { AppState } from '@/AppState.js';
 import KeepsCard from '@/components/KeepsCard.vue';
 import { keepsService } from '@/services/KeepsService.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 
 
 const keeps = computed(() => AppState.keeps)
@@ -12,6 +12,7 @@ const keeps = computed(() => AppState.keeps)
 onMounted(() => {
   getAllKeeps()
 })
+
 
 
 async function getAllKeeps() {

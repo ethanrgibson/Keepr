@@ -28,14 +28,14 @@ watch(theme, () => {
       <div class="d-flex align-items-center gap-4">
         <div class="ms-3 text-center">
           <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class=" btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               Create
             </button>
-            <ul class="dropdown-menu text-center bg-purple-subtle">
-              <li type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createKeepModal">
+            <ul class="dropdown-menu bg-purple text-center">
+              <li role="button" class="btn" data-bs-toggle="modal" data-bs-target="#createKeepModal">
                 New Keep </li>
               <br>
-              <li>New Vault</li>
+              <li class="dropdown-item">New Vault</li>
             </ul>
           </div>
         </div>
