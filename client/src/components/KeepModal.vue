@@ -15,27 +15,35 @@ const keep = computed(() => AppState.activeKeep)
       <div class="modal-content">
         <div v-if="keep" class="container-fluid">
           <div class="row">
-            <div class="col-md-6 p-0">
+            <div class="col-md-6 col-12 p-0">
               <div>
                 <img :src="keep.imgUrl" :alt="'Image uploaded by ' + keep.creator.name" class="rounded-start  keep-img">
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-12">
               <div class="h-100 p-5 d-flex flex-column justify-content-between">
-                <div>
-                  Place Holder BOIII
+                <div class="d-flex justify-content-center gap-4">
+                  <span class="fs-4 m-1 mdi mdi-eye">0</span>
+                  <span class="fs-4 m-1 mdi mdi-alpha-k-box-outline">0</span>
                 </div>
                 <div class="text-center">
                   <span class="fw-bold fs-2 mb-2">{{ keep.name }}</span>
                   <p>{{ keep.description }}</p>
                 </div>
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center gap-3">
                   <div>
-                    <div>
-                      <span>PlaceHolder for drop down</span>
-                      <button class="btn btn-indigo text-white">
-                        Save
-                      </button>
+                    <div class="d-flex gap-2">
+                      <div>
+                        <select class="form-select" id="">
+                          <option selected disabled value="">Vault Options</option>
+                          <option value="">Plastic</option>
+                        </select>
+                      </div>
+                      <div>
+                        <button class="btn btn-indigo text-white">
+                          Save
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <div>
