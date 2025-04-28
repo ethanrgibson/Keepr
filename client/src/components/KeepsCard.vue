@@ -1,6 +1,7 @@
 <script setup>
 import { Keep } from '@/models/Keep.js';
 import { keepsService } from '@/services/KeepsService.js';
+import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 
 
@@ -18,14 +19,26 @@ async function setActiveKeep(keepId) {
   }
 
 }
+async function deleteKeep(keep) {
+  try {
+    logger.log('deleting keep' + keep)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+
+}
 
 </script>
 
 
 <template>
-  <div @click="setActiveKeep(keep.id)" role="button" type="button" title="View Keep Information" data-bs-toggle="modal"
-    data-bs-target="#keepModal" class="rounded shadow-lg position-relative">
-    <div class="">
+  <div class="position-relative">
+    <div @click="deleteKeep(keep)" class="delete-button" role="button" title="Delete Keep">
+      <span class="mdi mdi-alpha-x-box-outline text-danger fs-4"></span>
+    </div>
+    <div @click="setActiveKeep(keep.id)" role="button" type="button" title="View Keep Information"
+      data-bs-toggle="modal" data-bs-target="#keepModal" class="rounded shadow-lg">
       <img :src="keep.imgUrl" :alt="'A Picture Submitted by' + keep.creator.name" class="img-fluid rounded">
     </div>
     <div class="profile-info p-2 d-flex justify-content-between align-items-center">
@@ -55,5 +68,11 @@ async function setActiveKeep(keepId) {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.delete-button {
+  position: absolute;
+  top: -20px;
+  left: 380px;
 }
 </style>
