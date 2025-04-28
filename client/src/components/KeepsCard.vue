@@ -2,7 +2,6 @@
 import { AppState } from '@/AppState.js';
 import { Keep } from '@/models/Keep.js';
 import { keepsService } from '@/services/KeepsService.js';
-import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
 
@@ -46,9 +45,9 @@ async function deleteKeep(keep) {
 
 <template>
   <div class="position-relative">
-    <div v-if="keep.creatorId == account?.id" @click="deleteKeep(keep)" class="delete-button" role="button"
+    <div v-if="keep.creatorId == account?.id" @click="deleteKeep(keep)" class="p-1 delete-button" role="button"
       title="Delete Keep">
-      <span class="mdi mdi-alpha-x-box text-danger fs-4"></span>
+      <span class=" bg-white rounded mdi mdi-alpha-x-box text-danger fs-2"></span>
     </div>
     <div @click="setActiveKeep(keep.id)" role="button" type="button" title="View Keep Information"
       data-bs-toggle="modal" data-bs-target="#keepModal" class="rounded shadow-lg">
@@ -85,7 +84,7 @@ async function deleteKeep(keep) {
 
 .delete-button {
   position: absolute;
-  top: -20px;
-  left: 380px;
+  top: 0;
+  right: 0;
 }
 </style>

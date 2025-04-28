@@ -1,12 +1,24 @@
 <script setup>
+import { vaultsService } from '@/services/VaultsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
+import { ref } from 'vue';
 
+
+const editableVaultData = ref({
+
+  name: '',
+  img: '',
+  isPrivate: false,
+  description: ''
+})
 
 
 async function createVault() {
   try {
-    logger.log('creating vault!')
+
+    await vaultsService.createVault(editableVaultData.value)
+
   }
   catch (error) {
     Pop.error(error);
@@ -33,15 +45,15 @@ async function createVault() {
           <form @submit.prevent="createVault()">
             <div class="mb-2">
               <label for="vaultName" class="label-block">Title</label>
-              <input type="text" id="vaultName" required minlength="1" maxlength="255">
+              <input v-model="editableVaultData.name" type="text" id="vaultName" required minlength="1" maxlength="255">
             </div>
             <div class="mb-2">
               <label for="vaultImgUrl" class="label-block">Image URL...</label>
-              <input type="text" id="vaultImgUrl" required>
+              <input v-model="editableVaultData.img" type="text" id="vaultImgUrl" required>
             </div>
             <div class="d-flex gap-2 mt-4">
               <div>
-                <input type="checkbox" class="ms-2" id="makeVaultPrivate">
+                <input v-model="editableVaultData.isPrivate" type="checkbox" class="ms-2" id="makeVaultPrivate">
               </div>
               <div>
                 <label for="MakeVaultPrivate">Make Vault Private?</label>
