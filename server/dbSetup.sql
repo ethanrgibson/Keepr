@@ -36,3 +36,19 @@ FROM keeps
 INNER JOIN accounts ON accounts.id = keeps.creator_id
 WHERE keeps.id = 2;
 
+-- VAULT TABLE
+
+CREATE TABLE vaults(
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+  name VARCHAR(255) NOT NULL,
+  description VARCHAR(1000) NOT NULL,
+  img VARCHAR(1000) NOT NULL,
+  is_private BOOLEAN NOT NULL DEFAULT false,
+  creator_id VARCHAR(255) NOT NULL,
+  FOREIGN KEY (creator_id) REFERENCES accounts(id) ON DELETE CASCADE
+
+)
+
+SELECT * FROM vaults;
