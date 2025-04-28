@@ -39,6 +39,7 @@ WHERE vaults.id =  LAST_INSERT_ID();";
 
   }
 
+
   internal Vault GetVaultById(int vaultId)
   {
     string sql = @"
@@ -71,6 +72,18 @@ WHERE id = @Id
 LIMIT 1;";
 
     int rowsAffected = _db.Execute(sql, vaultUpdated);
+
+    if (rowsAffected != 1)
+    {
+      throw new Exception(rowsAffected + " rows affected, and that is not good!");
+
+    }
+  }
+  internal void DeleteVault(int vaultId)
+  {
+    string sql = "DELETE FROM vaults WHERE id = @VaultId LIMIT 1;";
+
+    int rowsAffected = _db.Execute(sql, new { vaultId });
 
     if (rowsAffected != 1)
     {

@@ -52,3 +52,5 @@ CREATE TABLE vaults(
 )
 
 SELECT * FROM vaults;
+
+DELETE FROM vaults WHERE id = 3 LIMIT 1;
