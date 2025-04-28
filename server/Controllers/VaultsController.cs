@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace keeper_final.Controllers;
 
 [ApiController]
@@ -13,4 +15,25 @@ public class VaultsController : ControllerBase
     _vaultsService = vaultsService;
     _auth0Provider = auth0Provider;
   }
+
+
+
+  [Authorize]
+  [HttpPost]
+
+  public async Task<ActionResult<Vault>> CreateVault([FromBody] Vault vaultData)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      vaultData.CreatorId = userInfo.Id;
+      Vault vault = _vaultsService.CreateVault(vaultData);
+      return Ok(vault);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
 }
