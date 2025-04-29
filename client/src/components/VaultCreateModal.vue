@@ -70,7 +70,7 @@ async function createVault() {
               </div>
             </div>
             <div class="text-end">
-              <button type="submit" class="btn btn-purple">Create!</button>
+              <button type="submit" class="btn btn-purple" data-bs-dismiss="modal">Create!</button>
             </div>
           </form>
         </div>

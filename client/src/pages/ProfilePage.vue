@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import VaultCard from '@/components/VaultCard.vue';
 import { profilesService } from '@/services/ProfilesService.js';
 import { vaultsService } from '@/services/VaultsService.js';
 import { Pop } from '@/utils/Pop.js';
@@ -60,7 +61,7 @@ async function getVaultsByProfileId() {
         </div>
         <div class="d-flex justify-content-center gap-4">
           <span> 0 Keeps </span>
-          <span>0 Vault</span>
+          <span>{{ vaults.length }} Vaults</span>
         </div>
       </div>
     </div>
@@ -77,7 +78,9 @@ async function getVaultsByProfileId() {
       </div>
     </div>
     <div class="row">
-      {{ vaults }}
+      <div v-for="vault in vaults" :key="vault.id" class="col-md-3">
+        <VaultCard :vaultProp="vault" />
+      </div>
     </div>
   </div>
 </template>
