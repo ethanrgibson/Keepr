@@ -1,15 +1,18 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { profilesService } from '@/services/ProfilesService.js';
+import { vaultsService } from '@/services/VaultsService.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
+const vaults = computed(() => AppState.vaults)
 
 onMounted(() => {
   getProfile()
+  getVaultsByProfileId()
 
 })
 
@@ -17,6 +20,17 @@ async function getProfile() {
   try {
     const profileId = route.params.profileId
     await profilesService.getProfile(profileId)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+
+}
+
+async function getVaultsByProfileId() {
+  try {
+    const profileId = route.params.profileId
+    await vaultsService.getVaultsByProfileId(profileId)
   }
   catch (error) {
     Pop.error(error);
@@ -63,7 +77,7 @@ async function getProfile() {
       </div>
     </div>
     <div class="row">
-      Vaults
+      {{ vaults }}
     </div>
   </div>
 </template>

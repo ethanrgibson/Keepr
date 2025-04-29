@@ -16,7 +16,7 @@ async function getMyVaults() {
 
   try {
     const profileId = account.value.id
-    await vaultsService.getMyVaults(profileId)
+    await vaultsService.getVaultsByProfileId(profileId)
   }
   catch (error) {
     Pop.error(error);
