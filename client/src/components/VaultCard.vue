@@ -10,16 +10,18 @@ defineProps({
 
 
 <template>
-  <div class="rounded m-1 position-relative">
-    <div>
-      <img :src="vaultProp.imgUrl" alt="Image for Vault" class="rounded vault-img">
+  <RouterLink :to="{ name: 'Vault Page', params: { vaultId: vaultProp.id } }">
+    <div class="rounded m-1 position-relative">
+      <div>
+        <img :src="vaultProp.imgUrl" alt="Image for Vault" class="rounded vault-img">
+      </div>
+      <div class="vault-name px-1">
+        <span class="text-white fs-5">
+          {{ vaultProp.name }}
+        </span>
+      </div>
     </div>
-    <div class="vault-name px-1">
-      <span class="text-white fs-5">
-        {{ vaultProp.name }}
-      </span>
-    </div>
-  </div>
+  </RouterLink>
 </template>
 
 
