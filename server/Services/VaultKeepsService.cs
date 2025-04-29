@@ -15,4 +15,11 @@ public class VaultKeepsService
     VaultKeep vaultKeep = _vaultKeepRepository.CreateVaultKeep(vaultKeepData);
     return vaultKeep;
   }
+
+
+    internal List<VaultKeepKept> GetKeepsByVaultId(int vaultId)
+  {
+    List<VaultKeepKept> keeps = _vaultKeepRepository.GetKeepsByVaultId(vaultId);
+    return keeps;
+  }
 }

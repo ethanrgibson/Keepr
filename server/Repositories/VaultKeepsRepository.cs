@@ -27,4 +27,31 @@ WHERE vaultkeeps.id = LAST_INSERT_ID();";
 
     return createdVaultKeep;
   }
+
+  internal List<VaultKeepKept> GetKeepsByVaultId(int vaultId)
+  {
+    string sql = @"
+SELECT
+keeps.*, 
+vaultkeeps.id AS vault_keep_id,
+accounts.*
+FROM vaultkeeps
+INNER JOIN accounts ON accounts.id = vaultkeeps.creator_id
+INNER JOIN keeps ON keeps.id = vaultkeeps.keep_id
+WHERE vaultkeeps.vault_id = @VaultId;";
+
+    List<VaultKeepKept> vaultKeepsKept = _db.Query(sql, (VaultKeepKept vaultKeepKept, Profile account) =>
+    {
+      vaultKeepKept.Creator = account;
+
+      return vaultKeepKept;
+    }, new { vaultId }).ToList();
+
+    return vaultKeepsKept;
+
+
+
+  }
+
+
 }

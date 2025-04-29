@@ -10,3 +10,11 @@ public class VaultKeep : RepoItem<int>
   public string CreatorId { get; set; }
 
 }
+
+public class VaultKeepKept : Keep
+{
+
+  public int VaultKeepId { get; set; }
+
+}
+
