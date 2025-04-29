@@ -10,8 +10,8 @@ class VaultsService {
     AppState.vaults.push(vault)
   }
 
-  async getMyVaults() {
-    const response = await api.get('account/vaults')
+  async getMyVaults(profileId) {
+    const response = await api.get(`/api/profiles/${profileId}}/vaults`)
     logger.log(response.data)
   }
 }

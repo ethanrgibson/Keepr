@@ -1,12 +1,11 @@
 <script setup>
 import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
-import KeepsCard from '@/components/KeepsCard.vue';
 import { Pop } from '@/utils/Pop.js';
 import { vaultsService } from '@/services/VaultsService.js';
 
 const account = computed(() => AppState.account)
-// const keeps = computed(() => AppState.keeps)
+
 
 
 onMounted(() => {
@@ -16,13 +15,12 @@ onMounted(() => {
 async function getMyVaults() {
 
   try {
-    await vaultsService.getMyVaults()
+    const profileId = account.value.id
+    await vaultsService.getMyVaults(profileId)
   }
   catch (error) {
     Pop.error(error);
   }
-
-
 }
 
 </script>
@@ -45,7 +43,7 @@ async function getMyVaults() {
           </div>
         </div>
         <div class="d-flex justify-content-center gap-4">
-          <span>0 Keeps </span>
+          <span> 0 Keeps </span>
           <span>0 Vault</span>
         </div>
       </div>
@@ -63,11 +61,7 @@ async function getMyVaults() {
       </div>
     </div>
     <div class="row">
-      <!-- <div class="masonry-container">
-        <div v-for="keep in keeps" :key="keep?.id" class="m-3">
-          <KeepsCard :keep="keep" />
-        </div>
-      </div> -->
+      Vaults
     </div>
   </div>
 

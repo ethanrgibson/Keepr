@@ -47,7 +47,7 @@ const keep = computed(() => AppState.activeKeep)
                     </div>
                   </div>
                   <div>
-                    <RouterLink :to="{ name: 'Account' }">
+                    <RouterLink :to="{ name: 'Profile Page', params: { profileId: keep.creatorId } }">
                       <img :src="keep.creator.picture" :alt="'Profile Picture of ' + keep.creator.name"
                         class="profile-img me-2">
                       <span>{{ keep.creator.name }}</span>
