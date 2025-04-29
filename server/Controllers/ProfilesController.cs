@@ -10,11 +10,14 @@ public class ProfilesController : ControllerBase
   private readonly Auth0Provider _auth0Provider;
   private readonly VaultKeepsService _vaultKeepsService;
 
-  public ProfilesController(ProfilesService profileService, Auth0Provider auth0Provider, VaultKeepsService vaultKeepsService)
+  private readonly KeepsService _keepsService;
+
+  public ProfilesController(ProfilesService profileService, Auth0Provider auth0Provider, VaultKeepsService vaultKeepsService, KeepsService keepsService)
   {
     _profileService = profileService;
     _auth0Provider = auth0Provider;
     _vaultKeepsService = vaultKeepsService;
+    _keepsService = keepsService;
   }
 
 
@@ -34,7 +37,20 @@ public class ProfilesController : ControllerBase
     }
   }
 
+[HttpGet("{profileId}/keeps")]
 
+public ActionResult<List<Keep>> GetUsersKeeps(string profileId)
 
+{
+try 
+{
+List<Keep> keeps = _keepsService.GetUsersKeeps(profileId);
+return keeps;
 
+}
+catch (Exception exception)
+{
+  return BadRequest(exception.Message);
+}
+}
 }

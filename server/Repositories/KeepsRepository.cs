@@ -135,5 +135,25 @@ WHERE id = @Id LIMIT 1;";
     }
   }
 
+ internal List<Keep> GetUsersKeeps(string profileId)
+  {
+    string sql = @"
 
+SELECT
+keeps.*, 
+accounts.*
+FROM keeps
+INNER JOIN accounts ON accounts.id = keeps.creator_id
+WHERE keeps.creator_id = @ProfileId;";
+
+
+    List<Keep> keeps = _db.Query(sql, (Keep keep, Profile account) =>
+      {
+        keep.Creator = account;
+
+        return keep;
+      }, new { profileId }).ToList();
+
+    return keeps;
+  }
 }
