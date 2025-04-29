@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { Vault } from '@/models/Vault.js';
+import { vaultsService } from '@/services/VaultsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
@@ -16,14 +17,10 @@ async function deleteVault(vaultId) {
 
   try {
     const confirmed = await Pop.confirm('Are you sure you want to delete this vault?', 'It will be gone forever!', 'Delete It!', 'No, Stop!')
-
     if (!confirmed) {
       return
     }
-
-    logger.log('deleting vault #' + vaultId)
-
-
+    await vaultsService.DeleteVault(vaultId)
   }
   catch (error) {
     Pop.error(error);
