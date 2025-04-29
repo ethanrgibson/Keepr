@@ -20,7 +20,7 @@ public class VaultsService
   }
 
 
-  internal Vault GetVaultById(int vaultId)
+  private Vault GetVaultById(int vaultId)
   {
     Vault vault = _repository.GetVaultById(vaultId);
 
@@ -28,7 +28,18 @@ public class VaultsService
     {
       throw new Exception("Vault Does Not Exist");
     }
+    return vault;
+  }
 
+
+  internal Vault GetVaultById(int vaultId, Account userInfo)
+  {
+    Vault vault = GetVaultById(vaultId);
+
+    if (vault.IsPrivate == true && vault.CreatorId != userInfo?.Id)
+    {
+      throw new Exception("Cannot Access A Private Vault");
+    }
 
     return vault;
   }
@@ -70,5 +81,10 @@ public class VaultsService
     return vaults;
   }
 
+
+  internal List<Vault> GetVaultsByAccountId(string profileId, Account userInfo)
+  {
+    throw new NotImplementedException();
+  }
 
 }

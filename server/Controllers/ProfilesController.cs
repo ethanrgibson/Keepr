@@ -1,4 +1,6 @@
 
+using System.Threading.Tasks;
+
 namespace keeper_final.Controllers;
 
 [ApiController]
@@ -57,12 +59,13 @@ public class ProfilesController : ControllerBase
 
   [HttpGet("{profileId}/vaults")]
 
-  public ActionResult<List<Vault>> GetUsersVaults(string profileId)
+  public async Task<ActionResult<List<Vault>>> GetUsersVaults(string profileId)
 
   {
     try
     {
-      List<Vault> vaults = _vaultsService.GetVaultsByAccountId(profileId);
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      List<Vault> vaults = _vaultsService.GetVaultsByAccountId(profileId, userInfo);
       return vaults;
 
     }
