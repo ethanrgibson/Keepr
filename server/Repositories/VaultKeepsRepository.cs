@@ -1,4 +1,6 @@
 
+
+
 namespace keeper_final.Repositories;
 
 public class VaultKeepsRepository
@@ -28,6 +30,7 @@ WHERE vaultkeeps.id = LAST_INSERT_ID();";
     return createdVaultKeep;
   }
 
+
   internal List<VaultKeepKept> GetKeepsByVaultId(int vaultId)
   {
     string sql = @"
@@ -48,10 +51,26 @@ WHERE vaultkeeps.vault_id = @VaultId;";
     }, new { vaultId }).ToList();
 
     return vaultKeepsKept;
-
-
-
   }
 
+  internal VaultKeep GetVaultKeepById(int vaultKeepId)
+  {
+    string sql = "SELECT * FROM vaultkeeps WHERE id = @VaultKeepId LIMIT 1;";
 
+    VaultKeep vaultKeep = _db.Query<VaultKeep>(sql, new { vaultKeepId }).SingleOrDefault();
+
+    return vaultKeep;
+  }
+
+  internal void DeleteVaultById(int vaultKeepId)
+  {
+    string sql = "DELETE FROM vaultkeeps WHERE id = @VaultKeepId LIMIT 1;";
+
+    int rowsAffected = _db.Execute(sql, new { vaultKeepId });
+
+    if (rowsAffected != 1)
+    {
+      throw new Exception(rowsAffected + " rows were affected, and that is no good!");
+    }
+  }
 }
