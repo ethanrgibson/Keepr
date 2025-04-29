@@ -82,9 +82,13 @@ public class VaultsService
   }
 
 
-  internal List<Vault> GetVaultsByAccountId(string profileId, Account userInfo)
+  internal List<Vault> GetVaultsByAccountId(string accountId, Account userInfo)
   {
-    throw new NotImplementedException();
+    List<Vault> vaults = GetVaultsByAccountId(accountId);
+
+    return vaults.FindAll(vault => vault.IsPrivate == false || vault.CreatorId == userInfo?.Id);
   }
+
+
 
 }
