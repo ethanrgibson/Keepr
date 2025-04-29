@@ -12,6 +12,7 @@ ADD cover_img VARCHAR(1000);
 
 SELECT * FROM accounts;
 
+SELECT * FROM accounts WHERE id = '67e1d01f295e7e41d97fdd24';
 
 -- KEEP TABLE
 
