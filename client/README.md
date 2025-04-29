@@ -19,9 +19,18 @@ The content under the CodeWorks®, LLC Organization and all of the individual re
 4/29/25
 Start with requirements #4-9.
 
-Write incremented view count and have it display
+Write incremented view count and have it display -✅
 
 Create vault card(ability to delete on UI/UX) 
-show them on my account page (will serve as my profile page)
+Hide Private vaults on others profile (UI indicators)
+show them on my account page (will serve as my profile page) - ✅
 
-Set up profile pages for other users(pass postman tests)
+Set up profile pages for other users(pass postman tests) -✅
+
+4/30/25
+
+Reqs: 5-9
+
+Vault page shows keeps only in that vault(go through the vaultKeep to do that)
+
+User can edit account
