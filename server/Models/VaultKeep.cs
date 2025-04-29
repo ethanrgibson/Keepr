@@ -9,5 +9,4 @@ public class VaultKeep : RepoItem<int>
 
   public string CreatorId { get; set; }
 
-  public Profile Creator { get; set; }
 }
