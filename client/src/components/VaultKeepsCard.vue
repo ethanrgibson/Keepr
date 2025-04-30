@@ -1,12 +1,10 @@
 <script setup>
 import { AppState } from '@/AppState.js';
-import { Keep } from '@/models/Keep.js';
 import { VaultKeepKept } from '@/models/VaultKeep.js';
 import { keepsService } from '@/services/KeepsService.js';
 import { vaultKeepsService } from '@/services/VaultKeepsService.js';
-import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed, watch } from 'vue';
+import { computed } from 'vue';
 
 
 

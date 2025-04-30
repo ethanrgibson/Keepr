@@ -1,6 +1,8 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import KeepsCard from '@/components/KeepsCard.vue';
 import VaultCard from '@/components/VaultCard.vue';
+import { keepsService } from '@/services/KeepsService.js';
 import { profilesService } from '@/services/ProfilesService.js';
 import { vaultsService } from '@/services/VaultsService.js';
 import { Pop } from '@/utils/Pop.js';
@@ -10,10 +12,12 @@ import { useRoute } from 'vue-router';
 const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
 const vaults = computed(() => AppState.vaults)
+const keeps = computed(() => AppState.keeps)
 
 onMounted(() => {
   getProfile()
   getVaultsByProfileId()
+  getKeepsByProfileId()
 
 })
 
@@ -32,6 +36,17 @@ async function getVaultsByProfileId() {
   try {
     const profileId = route.params.profileId
     await vaultsService.getVaultsByProfileId(profileId)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
+
+async function getKeepsByProfileId() {
+  try {
+
+    const profileId = route.params.profileId
+    await keepsService.getKeepsByProfileId(profileId)
   }
   catch (error) {
     Pop.error(error);
@@ -83,6 +98,22 @@ async function getVaultsByProfileId() {
       </div>
     </div>
   </div>
+  <div class="container">
+    <div class="row justify-content-start">
+      <div class="col-md-4">
+        <div class="text-center">
+          <span class="fw-bold fs-2">Keeps</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div v-for="keep in keeps" :key="keep.id" class="col-md-3">
+        <div>
+          <KeepsCard :keep="keep" />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 
@@ -103,28 +134,5 @@ async function getVaultsByProfileId() {
 .profile-pic {
   max-height: 15dvh;
   border-radius: 50%;
-}
-
-.masonry-container {
-  columns: 400px;
-}
-
-.masonry-container>* {
-  display: inline-block;
-  break-inside: avoid;
-}
-
-
-
-
-
-
-@media screen AND (max-width: 768px) {
-
-  .masonry-container {
-    columns: 160px
-  }
-
-
 }
 </style>
