@@ -10,6 +10,7 @@ export class Keep extends DataBaseItem {
     this.description = data.description
     this.imgUrl = data.img
     this.views = data.views
+    this.kept = data.kept
     this.creatorId = data.creatorId
     this.creator = new Profile(data.creator)
 

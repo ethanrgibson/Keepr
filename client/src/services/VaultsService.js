@@ -24,7 +24,13 @@ class VaultsService {
     vaults.splice(vaultIndex, 1)
   }
 
-  
+
+  async getVaultById(vaultId) {
+    AppState.activeVault = null
+    const response = await api.get(`/api/vaults/${vaultId}`)
+    const vault = new Vault(response.data)
+    AppState.activeVault = vault
+  }
 
   async getLoggedInUsersVaults() {
     const response = await api.get('account/vaults')

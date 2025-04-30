@@ -3,6 +3,7 @@ import { AppState } from '@/AppState.js';
 import VaultKeepsCard from '@/components/VaultKeepsCard.vue';
 import { keepsService } from '@/services/KeepsService.js';
 import { vaultKeepsService } from '@/services/VaultKeepsService.js';
+import { vaultsService } from '@/services/VaultsService.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
@@ -12,11 +13,23 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute()
 const vault = computed(() => AppState.activeVault)
-const keeps = computed(() => AppState.keeps)
+const keeps = computed(() => AppState.vaultKeeps)
 
 onMounted(() => {
+  setActiveVault()
   getKeepsInVault()
 })
+
+async function setActiveVault() {
+
+  try {
+    const vaultId = route.params.vaultId
+    await vaultsService.getVaultById(vaultId)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
 
 async function getKeepsInVault() {
   try {
@@ -27,13 +40,27 @@ async function getKeepsInVault() {
   catch (error) {
     Pop.error(error);
   }
-
 }
 
 </script>
 
 
 <template>
+  <div v-if="vault" class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 p-0">
+        <div class="text-center m-4 position-relative">
+          <img :src="vault.imgUrl" alt="Cover Image" class="cover-img rounded img-fluid">
+          <div class="vault-name">
+            <h1 class="text-white">{{ vault.name }}</h1>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center gap-4">
+          <span> 0 Keeps </span>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-12">
@@ -60,7 +87,16 @@ async function getKeepsInVault() {
 
 
 
+.vault-name {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
 
+h1 {
+  text-shadow: 1px 1px 2px black;
+}
 
 
 @media screen AND (max-width: 768px) {
