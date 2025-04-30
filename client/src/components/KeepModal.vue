@@ -4,7 +4,7 @@ import { computed } from 'vue';
 
 
 const keep = computed(() => AppState.activeKeep)
-
+const myVaults = computed(() => AppState.vaults.filter(vault => vault.creatorId == AppState.account?.id))
 
 </script>
 
@@ -35,8 +35,10 @@ const keep = computed(() => AppState.activeKeep)
                     <div class="d-flex gap-2">
                       <div>
                         <select class="form-select" id="">
-                          <option selected disabled value="">Vault Options</option>
-                          <option value="">Plastic</option>
+                          <option selected disabled value="">Add To A Vault</option>
+                          <option v-for="vault in myVaults" :key="'Add to vault ' + vault.id" :value="vault.id">
+                            {{ vault.name }}
+                          </option>
                         </select>
                       </div>
                       <div>

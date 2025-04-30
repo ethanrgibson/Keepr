@@ -2,6 +2,7 @@
 import { AppState } from '@/AppState.js';
 import KeepsCard from '@/components/KeepsCard.vue';
 import { keepsService } from '@/services/KeepsService.js';
+import { vaultsService } from '@/services/VaultsService.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
@@ -11,6 +12,7 @@ const keeps = computed(() => AppState.keeps)
 
 onMounted(() => {
   getAllKeeps()
+  getUsersVaults()
 })
 
 
@@ -22,6 +24,17 @@ async function getAllKeeps() {
   catch (error) {
     Pop.error(error);
   }
+}
+
+async function getUsersVaults() {
+  try {
+    const profileId = AppState.account?.id
+    await vaultsService.getVaultsByProfileId(profileId)
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+
 }
 
 
