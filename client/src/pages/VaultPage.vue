@@ -1,5 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import KeepsCard from '@/components/KeepsCard.vue';
+import { keepsService } from '@/services/KeepsService.js';
 import { vaultsService } from '@/services/VaultsService.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
@@ -7,8 +9,8 @@ import { useRoute } from 'vue-router';
 
 
 const route = useRoute()
-
 const vault = computed(() => AppState.activeVault)
+const keeps = computed(() => AppState.keeps)
 
 onMounted(() => {
   getKeepsInVault()
@@ -17,7 +19,7 @@ onMounted(() => {
 async function getKeepsInVault() {
   try {
     const vaultId = route.params.vaultId
-    await vaultsService.getKeepsInVault(vaultId)
+    await keepsService.getKeepsInVault(vaultId)
 
   }
   catch (error) {
@@ -30,8 +32,41 @@ async function getKeepsInVault() {
 
 
 <template>
-  Hello Hi
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="masonry-container">
+          <div v-for="keep in keeps" :key="keep.id" class="m-3">
+            <KeepsCard :keep="keep" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.masonry-container {
+  columns: 400px;
+}
+
+.masonry-container>* {
+  display: inline-block;
+  break-inside: avoid;
+}
+
+
+
+
+
+
+@media screen AND (max-width: 768px) {
+
+  .masonry-container {
+    columns: 160px
+  }
+
+
+}
+</style>

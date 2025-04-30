@@ -2,6 +2,7 @@ import { logger } from "@/utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { Vault } from "@/models/Vault.js"
 import { AppState } from "@/AppState.js"
+import { Keep } from "@/models/Keep.js"
 
 class VaultsService {
   async createVault(vaultData) {
@@ -24,10 +25,7 @@ class VaultsService {
     vaults.splice(vaultIndex, 1)
   }
 
-  async getKeepsInVault(vaultId) {
-    const response = await api.get(`/api/vaults/${vaultId}/keeps`)
-    logger.log(response.data, 'hello')
-  }
+  
 
   async getLoggedInUsersVaults() {
     const response = await api.get('account/vaults')
