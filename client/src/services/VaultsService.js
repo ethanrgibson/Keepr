@@ -14,7 +14,6 @@ class VaultsService {
     const response = await api.get(`api/profiles/${profileId}/vaults`)
     const vaults = response.data.map(pojo => new Vault(pojo))
     AppState.vaults = vaults
-    logger.log(vaults)
 
   }
 
@@ -27,7 +26,7 @@ class VaultsService {
 
   async getKeepsInVault(vaultId) {
     const response = await api.get(`/api/vaults/${vaultId}/keeps`)
-    logger.log(response.data)
+    logger.log(response.data, 'hello')
   }
 
   async getLoggedInUsersVaults() {

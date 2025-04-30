@@ -3,16 +3,30 @@ import { AppState } from '@/AppState.js';
 import { vaultKeepsService } from '@/services/VaultKeepsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 
 const keep = computed(() => AppState.activeKeep)
 const myVaults = computed(() => AppState.vaults.filter(vault => vault.creatorId == AppState.account?.id))
 
-async function createVaultKeep() {
+const editableData = ref(
+  ''
+)
+
+
+async function createVaultKeep(keepId) {
 
   try {
-    logger.log('button working')
+    const vaultKeepData =
+    {
+      vaultId: editableData.value,
+      keepId: keepId
+    }
+
+
+    await vaultKeepsService.createVaultKeep(vaultKeepData)
+
+    editableData.value = ''
 
   }
   catch (error) {
@@ -48,8 +62,8 @@ async function createVaultKeep() {
                 <div class="d-flex justify-content-between align-items-center gap-3">
                   <div>
                     <div class="d-flex gap-2">
-                      <form @submit.prevent="createVaultKeep()">
-                        <select class="form-select" id="">
+                      <form @submit.prevent="createVaultKeep(keep.id)">
+                        <select v-model="editableData" class="form-select" id="">
                           <option selected disabled value="">Add To A Vault</option>
                           <option v-for="vault in myVaults" :key="'Add to vault ' + vault.id" :value="vault.id">
                             {{ vault.name }}
