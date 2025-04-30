@@ -1,8 +1,8 @@
 <script setup>
 import { AppState } from '@/AppState.js';
-import KeepsCard from '@/components/KeepsCard.vue';
+import VaultKeepsCard from '@/components/VaultKeepsCard.vue';
 import { keepsService } from '@/services/KeepsService.js';
-import { vaultsService } from '@/services/VaultsService.js';
+import { vaultKeepsService } from '@/services/VaultKeepsService.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
@@ -19,7 +19,7 @@ onMounted(() => {
 async function getKeepsInVault() {
   try {
     const vaultId = route.params.vaultId
-    await keepsService.getKeepsInVault(vaultId)
+    await vaultKeepsService.getKeepsInVault(vaultId)
 
   }
   catch (error) {
@@ -37,7 +37,7 @@ async function getKeepsInVault() {
       <div class="col-md-12 col-12">
         <div class="masonry-container">
           <div v-for="keep in keeps" :key="keep.id" class="m-3">
-            <KeepsCard :keep="keep" />
+            <VaultKeepsCard :keep="keep" />
           </div>
         </div>
       </div>

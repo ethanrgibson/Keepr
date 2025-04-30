@@ -32,11 +32,6 @@ class KeepsService {
     logger.log(response.data)
   }
  
-  async getKeepsInVault(vaultId) {
-    const response = await api.get(`/api/vaults/${vaultId}/keeps`)
-    const keeps = response.data.map(pojo => new Keep(pojo))
-    AppState.keeps = keeps
-  }
 
 }
 

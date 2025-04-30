@@ -2,7 +2,6 @@ import { logger } from "@/utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { Vault } from "@/models/Vault.js"
 import { AppState } from "@/AppState.js"
-import { Keep } from "@/models/Keep.js"
 
 class VaultsService {
   async createVault(vaultData) {
