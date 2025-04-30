@@ -7,6 +7,7 @@ import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
 
 const account = computed(() => AppState.account)
+const profile = computed(() => AppState.activeProfile)
 
 defineProps({
   vaultProp: { type: Vault, required: true }
@@ -32,10 +33,13 @@ async function deleteVault(vaultId) {
 
 
 <template>
-  <div class="rounded m-1 position-relative">
+  <div v-if="profile" class="rounded m-1 position-relative">
     <div v-if="vaultProp.creatorId == account?.id" class="p-1 delete-button" @click="deleteVault(vaultProp.id)"
       role="button" title="Delete Keep">
       <span class="bg-white rounded mdi mdi-alpha-x-box text-danger fs-2"></span>
+    </div>
+    <div v-if="vaultProp.isPrivate" class="private-UI p-1">
+      <span class="bg-white rounded mdi mdi-lock text-dark fs-2"></span>
     </div>
     <RouterLink :to="{ name: 'Vault Page', params: { vaultId: vaultProp.id } }">
       <div>
@@ -71,5 +75,11 @@ async function deleteVault(vaultId) {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.private-UI {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 </style>

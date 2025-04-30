@@ -21,16 +21,19 @@ Start with requirements #4-9.
 
 Write incremented view count and have it display -✅
 
-Create vault card(ability to delete on UI/UX) 
-Hide Private vaults on others profile (UI indicators)
+Create vault card(ability to delete on UI/UX) - ✅
+Hide Private vaults on others profile (UI indicators) - ✅
 show them on my account page (will serve as my profile page) - ✅
 
 Set up profile pages for other users(pass postman tests) -✅
 
+User can edit account
+
+
 4/30/25
+
+BUGS: Refresh on profile page removes private vaults from the one who should see them.
 
 Reqs: 5-9
 
 Vault page shows keeps only in that vault(go through the vaultKeep to do that)
-
-User can edit account
