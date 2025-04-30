@@ -12,7 +12,7 @@ import { useRoute, useRouter } from 'vue-router';
 
 
 const route = useRoute()
-// const router = useRouter()
+const router = useRouter()
 const vault = computed(() => AppState.activeVault)
 const vaultkeeps = computed(() => AppState.vaultKeeps)
 
@@ -29,7 +29,7 @@ async function setActiveVault() {
   }
   catch (error) {
     Pop.error(error, 'No vault here!');
-    // router.push({name: 'Home'})
+    router.push({name: 'Home'})
   }
 }
 
