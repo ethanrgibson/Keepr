@@ -7,7 +7,7 @@ import { computed, ref } from 'vue';
 
 
 const keep = computed(() => AppState.activeKeep)
-const myVaults = computed(() => AppState.vaults.filter(vault => vault.creatorId == AppState.account?.id))
+const myVaults = computed(() => AppState.myVaults)
 
 const editableData = ref(
   ''

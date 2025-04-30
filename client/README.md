@@ -34,6 +34,8 @@ User can edit account - ✅
 
 BUGS: Refresh on profile page removes private vaults from the one who should see them.- ✅
 
-Reqs: 5-9
+Reqs: 5-9 - ✅
 
-Vault page shows keeps only in that vault(go through the vaultKeep to do that)
+Vault page shows keeps only in that vault(go through the vaultKeep to do that) - ✅
+
+On refresh on profile page, I get the other profiles vaults

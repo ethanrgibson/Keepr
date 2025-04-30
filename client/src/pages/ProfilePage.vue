@@ -106,10 +106,14 @@ async function getKeepsByProfileId() {
         </div>
       </div>
     </div>
+  </div>
+  <div class="container">
     <div class="row">
-      <div v-for="keep in keeps" :key="keep.id" class="col-md-3">
-        <div>
-          <KeepsCard :keep="keep" />
+      <div class="col-md-12 col-12">
+        <div class="masonry-container">
+          <div v-for="keep in keeps" :key="keep.id" class="m-3">
+            <KeepsCard :keep="keep" />
+          </div>
         </div>
       </div>
     </div>
@@ -134,5 +138,28 @@ async function getKeepsByProfileId() {
 .profile-pic {
   max-height: 15dvh;
   border-radius: 50%;
+}
+
+.masonry-container {
+  columns: 400px;
+}
+
+.masonry-container>* {
+  display: inline-block;
+  break-inside: avoid;
+}
+
+
+
+
+
+
+@media screen AND (max-width: 768px) {
+
+  .masonry-container {
+    columns: 160px
+  }
+
+
 }
 </style>

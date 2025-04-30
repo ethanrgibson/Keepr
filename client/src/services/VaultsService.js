@@ -11,13 +11,14 @@ class VaultsService {
   }
 
   async getVaultsByProfileId(profileId) {
+    AppState.vaults = []
     const response = await api.get(`api/profiles/${profileId}/vaults`)
     const vaults = response.data.map(pojo => new Vault(pojo))
     AppState.vaults = vaults
 
   }
 
-  
+
 
   async DeleteVault(vaultId) {
     const response = await api.delete(`api/vaults/${vaultId}`)
@@ -37,7 +38,7 @@ class VaultsService {
   async getLoggedInUsersVaults() {
     const response = await api.get('account/vaults')
     const vaults = response.data.map(pojo => new Vault(pojo))
-    AppState.vaults = vaults
+    AppState.myVaults = vaults
   }
 }
 
