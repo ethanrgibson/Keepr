@@ -28,6 +28,8 @@ async function createVaultKeep(keepId) {
 
     editableData.value = ''
 
+    Pop.toast('Keep Kept! 🤙🏻')
+
   }
   catch (error) {
     Pop.error(error);
@@ -63,7 +65,7 @@ async function createVaultKeep(keepId) {
                   <div>
                     <div class="d-flex gap-2">
                       <form @submit.prevent="createVaultKeep(keep.id)">
-                        <select v-model="editableData" class="form-select" id="">
+                        <select v-model="editableData" class="form-select" id="vaultId">
                           <option selected disabled value="">Add To A Vault</option>
                           <option v-for="vault in myVaults" :key="'Add to vault ' + vault.id" :value="vault.id">
                             {{ vault.name }}
