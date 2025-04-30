@@ -6,12 +6,13 @@ import { vaultKeepsService } from '@/services/VaultKeepsService.js';
 import { vaultsService } from '@/services/VaultsService.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 // Do i need to set an active vault keep as a means of getting the vaultkeepID so i can remove a keep from a vault?
 
 
 const route = useRoute()
+// const router = useRouter()
 const vault = computed(() => AppState.activeVault)
 const vaultkeeps = computed(() => AppState.vaultKeeps)
 
@@ -27,7 +28,8 @@ async function setActiveVault() {
     await vaultsService.getVaultById(vaultId)
   }
   catch (error) {
-    Pop.error(error);
+    Pop.error(error, 'No vault here!');
+    // router.push({name: 'Home'})
   }
 }
 
