@@ -38,4 +38,4 @@ Reqs: 5-9 - ✅
 
 Vault page shows keeps only in that vault(go through the vaultKeep to do that) - ✅
 
-On refresh on profile page, I get the other profiles vaults
+Add my vaults and keeps section to account page. like vaults have a "myKeeps" [] in the app state that way I am always pointing to my vaults
