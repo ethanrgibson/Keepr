@@ -29,6 +29,12 @@ class VaultsService {
     const response = await api.get(`/api/vaults/${vaultId}/keeps`)
     logger.log(response.data)
   }
+
+  async getLoggedInUsersVaults() {
+    const response = await api.get('account/vaults')
+    const vaults = response.data.map(pojo => new Vault(pojo))
+    AppState.vaults = vaults
+  }
 }
 
 
