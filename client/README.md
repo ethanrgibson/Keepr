@@ -27,7 +27,7 @@ show them on my account page (will serve as my profile page) - ✅
 
 Set up profile pages for other users(pass postman tests) -✅
 
-User can edit account
+User can edit account - ✅
 
 
 4/30/25
