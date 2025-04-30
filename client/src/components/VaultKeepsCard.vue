@@ -1,12 +1,12 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { Keep } from '@/models/Keep.js';
+import { VaultKeepKept } from '@/models/VaultKeep.js';
 import { keepsService } from '@/services/KeepsService.js';
-import { vaultKeepsService } from '@/services/VaultKeepsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+
 
 
 
@@ -14,7 +14,7 @@ const account = computed(() => AppState.account)
 
 
 defineProps({
-  keep: { type: Keep, required: true }
+  keep: { type: VaultKeepKept, required: true }
 })
 
 async function setActiveKeep(keepId) {
@@ -29,7 +29,7 @@ async function setActiveKeep(keepId) {
 }
 
 
-async function removeKeepFromVault() {
+async function removeKeepFromVault(vaultKeepId) {
   try {
 
     const confirmed = await Pop.confirm('Sure you want to remove this keep from this vault?')
@@ -38,7 +38,7 @@ async function removeKeepFromVault() {
       return
     }
 
-    // await vaultKeepsService.deleteVaultKeep(currentvaultKeep.value)
+    logger.log(vaultKeepId)
   }
   catch (error) {
     Pop.error(error);
@@ -51,8 +51,8 @@ async function removeKeepFromVault() {
 
 <template>
   <div class="position-relative">
-    <div v-if="keep.creatorId == account?.id" @click="removeKeepFromVault()" class="p-1 delete-button" role="button"
-      title="Delete Keep">
+    <div v-if="keep.creatorId == account?.id" @click="removeKeepFromVault(keep.vaultKeepId)" class="p-1 delete-button"
+      role="button" title="Delete Keep">
       <span class=" bg-white rounded mdi mdi-alpha-x-box text-danger fs-2"></span>
     </div>
     <div @click="setActiveKeep(keep.id)" role="button" type="button" title="View Keep Information"

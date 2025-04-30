@@ -13,7 +13,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute()
 const vault = computed(() => AppState.activeVault)
-const keeps = computed(() => AppState.vaultKeeps)
+const vaultkeeps = computed(() => AppState.vaultKeeps)
 
 onMounted(() => {
   setActiveVault()
@@ -56,7 +56,7 @@ async function getKeepsInVault() {
           </div>
         </div>
         <div class="d-flex justify-content-center gap-4">
-          <span class="bg-purple rounded-pill px-2"> {{ keeps.length }} Keeps </span>
+          <span class="bg-purple rounded-pill px-2"> {{ vaultkeeps.length }} Keeps </span>
         </div>
       </div>
     </div>
@@ -65,7 +65,7 @@ async function getKeepsInVault() {
     <div class="row">
       <div class="col-md-12 col-12">
         <div class="masonry-container">
-          <div v-for="keep in keeps" :key="keep.id" class="m-3">
+          <div v-for="keep in vaultkeeps" :key="keep.id" class="m-3">
             <VaultKeepsCard :keep="keep" />
           </div>
         </div>
