@@ -1,10 +1,25 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import { vaultKeepsService } from '@/services/VaultKeepsService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
 
 
 const keep = computed(() => AppState.activeKeep)
 const myVaults = computed(() => AppState.vaults.filter(vault => vault.creatorId == AppState.account?.id))
+
+async function createVaultKeep() {
+
+  try {
+    logger.log('button working')
+
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+
+}
 
 </script>
 
@@ -33,19 +48,19 @@ const myVaults = computed(() => AppState.vaults.filter(vault => vault.creatorId 
                 <div class="d-flex justify-content-between align-items-center gap-3">
                   <div>
                     <div class="d-flex gap-2">
-                      <div>
+                      <form @submit.prevent="createVaultKeep()">
                         <select class="form-select" id="">
                           <option selected disabled value="">Add To A Vault</option>
                           <option v-for="vault in myVaults" :key="'Add to vault ' + vault.id" :value="vault.id">
                             {{ vault.name }}
                           </option>
                         </select>
-                      </div>
-                      <div>
-                        <button class="btn btn-indigo text-white">
-                          Save
-                        </button>
-                      </div>
+                        <div>
+                          <button type="submit" class="btn btn-indigo text-white">
+                            Save
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                   <div>
