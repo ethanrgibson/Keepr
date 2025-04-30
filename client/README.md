@@ -32,7 +32,7 @@ User can edit account - ✅
 
 4/30/25
 
-BUGS: Refresh on profile page removes private vaults from the one who should see them.
+BUGS: Refresh on profile page removes private vaults from the one who should see them.- ✅
 
 Reqs: 5-9
 
