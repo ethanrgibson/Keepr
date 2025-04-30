@@ -93,4 +93,12 @@ INNER JOIN keeps ON keeps.id = vaultkeeps.keep_id
 WHERE keeps.creator_id = '67e1d01f295e7e41d97fdd24';
 
 
--- WHERE keeps.creator_id = '67e47a92676d7b537e446d1c';
+SELECT
+keeps.*,
+COUNT(vaultkeeps.id) AS kept_count,
+accounts.*
+FROM keeps
+INNER JOIN accounts ON accounts.id = keeps.creator_id
+LEFT OUTER JOIN vaultkeeps ON vaultkeeps.keep_id = keeps.id
+WHERE keeps.id = 191
+GROUP BY keeps.id;

@@ -64,13 +64,24 @@ public class KeepsRepository
   internal Keep GetKeepById(int keepId)
   {
     string sql = @"
-
-SELECT 
+SELECT
 keeps.*,
+COUNT(vaultkeeps.id) AS kept,
 accounts.*
 FROM keeps
 INNER JOIN accounts ON accounts.id = keeps.creator_id
-WHERE keeps.id = @keepId;";
+LEFT OUTER JOIN vaultkeeps ON vaultkeeps.keep_id = keeps.id
+WHERE keeps.id = @KeepId
+GROUP BY keeps.id;";
+
+    //     @"
+
+    // SELECT 
+    // keeps.*,
+    // accounts.*
+    // FROM keeps
+    // INNER JOIN accounts ON accounts.id = keeps.creator_id
+    // WHERE keeps.id = @keepId;";
 
 
     Keep keep = _db.Query(sql, (Keep keep, Profile account) =>
@@ -135,7 +146,7 @@ WHERE id = @Id LIMIT 1;";
     }
   }
 
- internal List<Keep> GetUsersKeeps(string profileId)
+  internal List<Keep> GetUsersKeeps(string profileId)
   {
     string sql = @"
 

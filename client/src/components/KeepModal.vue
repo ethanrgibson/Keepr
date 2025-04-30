@@ -55,7 +55,7 @@ async function createVaultKeep(keepId) {
               <div class="h-100 p-5 d-flex flex-column justify-content-between">
                 <div class="d-flex justify-content-center gap-4">
                   <span class="fs-4 m-1 mdi mdi-eye">{{ keep.views }}</span>
-                  <span class="fs-4 m-1 mdi mdi-alpha-k-box-outline">0</span>
+                  <span class="fs-4 m-1 mdi mdi-alpha-k-box-outline">{{ keep.kept }}</span>
                 </div>
                 <div class="text-center">
                   <span class="fw-bold fs-2 mb-2">{{ keep.name }}</span>
