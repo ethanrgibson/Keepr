@@ -46,39 +46,41 @@ async function createVaultKeep(keepId) {
       <div class="modal-content">
         <div v-if="keep" class="container-fluid">
           <div class="row">
-            <div class="col-md-6 col-12 p-0">
+            <div class="col-md-6 col-12 p-0 position-relative">
+              <div class="exit-modal p-1 d-none" role="button" type="button" title="Exit Keep Details"
+                data-bs-dismiss="modal">
+                <span class="mdi mdi-alpha-x-box fs-5 text-white"></span>
+              </div>
               <div>
-                <img :src="keep.imgUrl" :alt="'Image uploaded by ' + keep.creator.name" class="rounded-start  keep-img">
+                <img :src="keep.imgUrl" :alt="'Image uploaded by ' + keep.creator.name" class="rounded-keep keep-img">
               </div>
             </div>
             <div class="col-md-6 col-12">
-              <div class="h-100 p-5 d-flex flex-column justify-content-between">
+              <div class="h-100 p-3 d-flex flex-column justify-content-between">
                 <div class="d-flex justify-content-center gap-4">
                   <span class="fs-4 m-1 mdi mdi-eye">{{ keep.views }}</span>
-                  <span class="fs-4 m-1 mdi mdi-alpha-k-box-outline">{{ keep.kept }}</span>
+                  <span class="fs-4 m-1 mdi mdi-alpha-x-box">{{ keep.kept }}</span>
                 </div>
                 <div class="text-center">
                   <span class="fw-bold fs-2 mb-2">{{ keep.name }}</span>
                   <p>{{ keep.description }}</p>
                 </div>
                 <div class="d-flex justify-content-between align-items-center gap-3">
-                  <div>
-                    <div class="d-flex gap-2">
-                      <form @submit.prevent="createVaultKeep(keep.id)">
-                        <select v-model="editableData" class="form-select" id="vaultId">
-                          <option selected disabled value="">Add To A Vault</option>
-                          <option v-for="vault in myVaults" :key="'Add to vault ' + vault.id" :value="vault.id">
-                            {{ vault.name }}
-                          </option>
-                        </select>
-                        <div>
-                          <button type="submit" class="btn btn-indigo text-white">
-                            Save
-                          </button>
-                        </div>
-                      </form>
+                  <form @submit.prevent="createVaultKeep(keep.id)">
+                    <div class="d-flex gap-2 align-items-center">
+                      <select v-model="editableData" class="form-select" id="vaultId" required>
+                        <option selected disabled value="">Add To A Vault</option>
+                        <option v-for="vault in myVaults" :key="'Add to vault ' + vault.id" :value="vault.id">
+                          {{ vault.name }}
+                        </option>
+                      </select>
+                      <div>
+                        <button type="submit" class="btn btn-indigo text-white">
+                          Save
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  </form>
                   <div>
                     <RouterLink :to="{ name: 'Profile Page', params: { profileId: keep.creatorId } }">
                       <img :src="keep.creator.picture" :alt="'Profile Picture of ' + keep.creator.name"
@@ -115,6 +117,26 @@ async function createVaultKeep(keepId) {
 a {
   text-decoration: none;
   color: black;
+
+}
+
+.rounded-keep {
+  border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius);
+}
+
+@media screen AND (max-width: 768px) {
+
+  .exit-modal {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-shadow: 1px 1px 2px black;
+  }
+
+  .rounded-keep {
+    border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0;
+  }
 
 }
 </style>

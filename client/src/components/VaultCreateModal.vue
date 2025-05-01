@@ -58,7 +58,7 @@ async function createVault() {
             </div>
             <div class="mb-2">
               <label for="vaultImgUrl" class="label-block">Image URL...</label>
-              <input v-model="editableVaultData.img" type="text" id="vaultImgUrl" required>
+              <input v-model="editableVaultData.img" type="text" id="vaultImgUrl" required minlength="1" maxlength="1000">
             </div>
             <div class="d-flex gap-2 mt-4">
               <div>

@@ -58,16 +58,6 @@ async function getLoggedInUsersVaults() {
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div>
-        <h2>My Vaults</h2>
-      </div>
-      <div v-for="vault in myVaults" :key="vault.id" class="col-md-3">
-        <VaultCard :vaultProp="vault" />
-      </div>
-    </div>
-  </div>
 </template>
 
 <style scoped lang="scss">

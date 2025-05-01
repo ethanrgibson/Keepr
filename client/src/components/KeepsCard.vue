@@ -87,4 +87,17 @@ async function deleteKeep(keepId) {
   top: 0;
   right: 0;
 }
+
+
+@media screen AND (max-width: 768px) {
+
+  .profile-img {
+    display: none;
+  }
+
+  .keep-name {
+    font-size: medium !important;
+  }
+
+}
 </style>

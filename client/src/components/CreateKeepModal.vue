@@ -51,7 +51,7 @@ async function createNewKeep() {
             </div>
             <div class="mb-2">
               <label for="KeepImgUrl">Image URL...</label>
-              <input v-model="editableKeepData.img" type="text" id="KeepImgUrl" required>
+              <input v-model="editableKeepData.img" type="text" id="KeepImgUrl" required minlength="1" maxlength="1000">
             </div>
             <div class="mb-2">
               <label for="KeepDescription">Keep Description</label>
