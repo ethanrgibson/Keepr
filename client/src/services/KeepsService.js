@@ -33,9 +33,10 @@ class KeepsService {
   }
 
   async getKeepsByProfileId(profileId) {
+    AppState.profileKeeps = []
     const response = await api.get(`api/profiles/${profileId}/keeps`)
     const keeps = response.data.map(pojo => new Keep(pojo))
-    AppState.keeps = keeps
+    AppState.profileKeeps = keeps
   }
 
 }

@@ -9,6 +9,9 @@ export const AppState = reactive({
 
   /** @type {import('./models/Keep.js').Keep[]} keeps from database*/
   keeps: [],
+  
+  /** @type {import('./models/Keep.js').Keep[]} keeps from database*/
+  profileKeeps: [],
 
   /** @type {import('./models/Keep.js').Keep} one specific keep from the database*/
   activeKeep: null,

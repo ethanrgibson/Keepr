@@ -12,7 +12,7 @@ import { useRoute } from 'vue-router';
 const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
 const vaults = computed(() => AppState.vaults)
-const keeps = computed(() => AppState.keeps)
+const keeps = computed(() => AppState.profileKeeps)
 
 onMounted(() => {
   getProfile()
@@ -75,8 +75,8 @@ async function getKeepsByProfileId() {
           </div>
         </div>
         <div class="d-flex justify-content-center gap-4">
-          <span> 0 Keeps </span>
-          <span>{{ vaults.length }} Vaults</span>
+          <span class="bg-purple rounded-pill px-2"> {{ keeps.length }} Keeps</span>
+          <span class="bg-purple rounded-pill px-2">{{ vaults.length }} Vaults</span>
         </div>
       </div>
     </div>
