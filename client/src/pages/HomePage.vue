@@ -42,17 +42,17 @@ async function getUsersVaults() {
 
 <template>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-12">
-        <div class="masonry-container">
-          <div v-for="keep in keeps" :key="keep.id" class="m-3">
-            <KeepsCard :keep="keep" />
-          </div>
-        </div>
-      </div>
+  <div class="masonry-container">
+    <div v-for="keep in keeps" :key="keep.id" class="m-1 m-lg-3">
+      <KeepsCard :keep="keep" />
     </div>
   </div>
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-12">
+      </div>
+    </div>
+  </div> -->
 
 </template>
 

@@ -8,6 +8,7 @@ import { computed, ref } from 'vue';
 
 const keep = computed(() => AppState.activeKeep)
 const myVaults = computed(() => AppState.myVaults)
+const account = computed(() => AppState.account)
 
 const editableData = ref(
   ''
@@ -58,15 +59,15 @@ async function createVaultKeep(keepId) {
             <div class="col-md-6 col-12">
               <div class="h-100 p-3 d-flex flex-column justify-content-between">
                 <div class="d-flex justify-content-center gap-4">
-                  <span class="fs-4 m-1 mdi mdi-eye">{{ keep.views }}</span>
-                  <span class="fs-4 m-1 mdi mdi-alpha-k-box">{{ keep.kept }}</span>
+                  <span class="fs-4 m-1 mdi mdi-eye" :title="keep.views + ' Views'">{{ keep.views }}</span>
+                  <span class="fs-4 m-1 mdi mdi-alpha-k-box" :title="keep.kept + ' Times Kept'">{{ keep.kept }}</span>
                 </div>
                 <div class="text-center">
                   <span class="fw-bold fs-2 mb-2">{{ keep.name }}</span>
                   <p>{{ keep.description }}</p>
                 </div>
                 <div class="d-flex justify-content-between align-items-center gap-3">
-                  <form @submit.prevent="createVaultKeep(keep.id)">
+                  <form v-if="account" @submit.prevent="createVaultKeep(keep.id)">
                     <div class="d-flex gap-2 align-items-center">
                       <select v-model="editableData" class="form-select" id="vaultId" required>
                         <option selected disabled value="">Add To A Vault</option>

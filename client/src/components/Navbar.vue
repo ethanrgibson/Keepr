@@ -1,18 +1,11 @@
 <script setup>
-import { ref, watch } from 'vue';
-import { loadState, saveState } from '../utils/Store.js';
+import { AppState } from '@/AppState.js';
 import Login from './Login.vue';
+import { computed } from 'vue';
 
-const theme = ref(loadState('theme') || 'light')
+const account = computed(() => AppState.account)
 
-function toggleTheme() {
-  theme.value = theme.value == 'light' ? 'dark' : 'light'
-}
 
-watch(theme, () => {
-  document.documentElement.setAttribute('data-bs-theme', theme.value)
-  saveState('theme', theme.value)
-}, { immediate: true })
 
 </script>
 
@@ -24,8 +17,7 @@ watch(theme, () => {
           <p class="m-0 fs-5">Home</p>
         </div>
       </RouterLink>
-      <!-- TODO make this collapse not so weird -->
-      <div class="d-flex align-items-center gap-4">
+      <div v-if="account" class="d-flex align-items-center gap-4">
         <div class="ms-3 text-center">
           <div class="dropdown">
             <button class=" btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

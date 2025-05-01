@@ -18,7 +18,6 @@ const vaultkeeps = computed(() => AppState.vaultKeeps)
 
 onMounted(() => {
   setActiveVault()
-  getKeepsInVault()
 })
 
 async function setActiveVault() {
@@ -26,10 +25,11 @@ async function setActiveVault() {
   try {
     const vaultId = route.params.vaultId
     await vaultsService.getVaultById(vaultId)
+    getKeepsInVault()
   }
   catch (error) {
     Pop.error(error, 'No vault here!');
-    router.push({name: 'Home'})
+    router.push({ name: 'Home' })
   }
 }
 
