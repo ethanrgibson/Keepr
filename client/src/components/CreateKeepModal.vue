@@ -41,25 +41,28 @@ async function createNewKeep() {
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="createKeepModalLabel">Create New Keep!</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            title="Close Create Keep Form"></button>
         </div>
         <div class="modal-body">
           <form @submit.prevent="createNewKeep()">
             <div class="mb-2">
               <label for="KeepName">Name Your Keep</label>
-              <input v-model="editableKeepData.name" type="text" id="KeepName" required minlength="1" maxlength="255">
+              <input v-model="editableKeepData.name" type="text" id="KeepName" required minlength="1" maxlength="255"
+                title="Name for your keep">
             </div>
             <div class="mb-2">
               <label for="KeepImgUrl">Image URL...</label>
-              <input v-model="editableKeepData.img" type="text" id="KeepImgUrl" required minlength="1" maxlength="1000">
+              <input v-model="editableKeepData.img" type="text" id="KeepImgUrl" required minlength="1" maxlength="1000"
+                title="Image for your keep">
             </div>
             <div class="mb-2">
               <label for="KeepDescription">Keep Description</label>
               <textarea v-model="editableKeepData.description" type="text" id="KeepDescription" required minlength="1"
-                maxlength="1000"></textarea>
+                maxlength="1000" title="Description for your keep"></textarea>
             </div>
             <div class="text-end">
-              <button type="submit" class="btn btn-purple">Create!</button>
+              <button type="submit" class="btn btn-purple" title="Create Your Keep!">Create!</button>
             </div>
           </form>
         </div>

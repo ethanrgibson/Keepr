@@ -10,6 +10,7 @@ import { computed } from 'vue';
 
 
 const account = computed(() => AppState.account)
+const vault = computed(() => AppState.activeVault)
 
 
 defineProps({
@@ -50,7 +51,8 @@ async function removeKeepFromVault(vaultKeepId) {
 
 <template>
   <div class="position-relative">
-    <div @click="removeKeepFromVault(keep.vaultKeepId)" class="p-1 delete-button" role="button" title="Delete Keep">
+    <div v-if="vault.creatorId == account?.id" @click="removeKeepFromVault(keep.vaultKeepId)" class="p-1 delete-button"
+      role="button" title="Delete Keep">
       <span class=" bg-white rounded mdi mdi-alpha-x-box text-danger fs-2"></span>
     </div>
     <div @click="setActiveKeep(keep.id)" role="button" type="button" title="View Keep Information"

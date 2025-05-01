@@ -55,6 +55,7 @@ async function getKeepsInVault() {
           <img :src="vault.imgUrl" alt="Cover Image" class="cover-img rounded img-fluid">
           <div class="vault-name">
             <h1 class="text-white">{{ vault.name }}</h1>
+            <p class="text-white fs-3">by {{ vault.creator.name }}</p>
           </div>
         </div>
         <div class="d-flex justify-content-center gap-4">
@@ -96,7 +97,8 @@ async function getKeepsInVault() {
   left: 0;
 }
 
-h1 {
+h1,
+p {
   text-shadow: 1px 1px 2px black;
 }
 

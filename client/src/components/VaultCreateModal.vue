@@ -48,22 +48,25 @@ async function createVault() {
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="createVaultModalLabel">Create New Vault!</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            title="Close Create Vault Form"></button>
         </div>
         <div class="modal-body">
           <form @submit.prevent="createVault()">
             <div class="mb-2">
               <label for="vaultName" class="label-block">Title</label>
-              <input v-model="editableVaultData.name" type="text" id="vaultName" required minlength="1" maxlength="255">
+              <input v-model="editableVaultData.name" type="text" id="vaultName" required minlength="1" maxlength="255"
+                title="Title for your vault">
             </div>
             <div class="mb-2">
               <label for="vaultImgUrl" class="label-block">Image URL...</label>
               <input v-model="editableVaultData.img" type="text" id="vaultImgUrl" required minlength="1"
-                maxlength="1000">
+                maxlength="1000" title="Cover image for your vault">
             </div>
             <div class="d-flex gap-2 mt-4">
               <div>
-                <input v-model="editableVaultData.isPrivate" type="checkbox" class="ms-2" id="makeVaultPrivate">
+                <input v-model="editableVaultData.isPrivate" type="checkbox" class="ms-2" id="makeVaultPrivate"
+                  title="Mark your vault as private">
               </div>
               <div>
                 <label for="MakeVaultPrivate">Make Vault Private?</label>
@@ -71,7 +74,8 @@ async function createVault() {
               </div>
             </div>
             <div class="text-end">
-              <button type="submit" class="btn btn-purple" data-bs-dismiss="modal">Create!</button>
+              <button type="submit" class="btn btn-purple" data-bs-dismiss="modal"
+                title="Create Your Vault!">Create!</button>
             </div>
           </form>
         </div>

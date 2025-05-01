@@ -76,7 +76,7 @@ async function createVaultKeep(keepId) {
                         </option>
                       </select>
                       <div>
-                        <button type="submit" class="btn btn-indigo text-white">
+                        <button type="submit" class="btn btn-indigo text-white" title="Save Keep to your Vault!">
                           Save
                         </button>
                       </div>
