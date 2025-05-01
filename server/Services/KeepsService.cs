@@ -35,7 +35,7 @@ public class KeepsService
 
     if (keep == null)
     {
-      throw new Exception("This Keep does not exsist!");
+      throw new Exception("This Keep does not exist!");
     }
 
 

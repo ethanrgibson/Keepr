@@ -102,3 +102,11 @@ INNER JOIN accounts ON accounts.id = keeps.creator_id
 LEFT OUTER JOIN vaultkeeps ON vaultkeeps.keep_id = keeps.id
 WHERE keeps.id = 191
 GROUP BY keeps.id;
+
+
+SELECT 
+  keeps.*,
+  accounts.* 
+  FROM keeps
+  INNER JOIN accounts ON accounts.id = keeps.creator_id
+  ORDER BY keeps.created_at DESC;

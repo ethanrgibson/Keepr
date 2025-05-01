@@ -101,7 +101,8 @@ vaults.*,
 accounts.*
 FROM vaults
 INNER JOIN accounts ON accounts.id = vaults.creator_id
-WHERE vaults.creator_id = @accountId;";
+WHERE vaults.creator_id = @accountId
+ORDER BY vaults.created_at DESC;";
 
 
 

@@ -41,7 +41,8 @@ accounts.*
 FROM vaultkeeps
 INNER JOIN keeps ON keeps.id = vaultkeeps.keep_id
 INNER JOIN accounts ON accounts.id = keeps.creator_id
-WHERE vaultkeeps.vault_id = @VaultId;";
+WHERE vaultkeeps.vault_id = @VaultId
+ORDER BY keeps.created_at DESC;";
 
     List<VaultKeepKept> vaultKeepsKept = _db.Query(sql, (VaultKeepKept vaultKeepKept, Profile account) =>
     {
