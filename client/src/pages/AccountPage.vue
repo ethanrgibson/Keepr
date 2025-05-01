@@ -2,14 +2,13 @@
 import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
 import AccountForm from '@/components/AccountForm.vue';
-import VaultCard from '@/components/VaultCard.vue';
 import { vaultsService } from '@/services/VaultsService.js';
 import { Pop } from '@/utils/Pop.js';
 
 
 
 const account = computed(() => AppState.account)
-const myVaults = computed(() => AppState.myVaults)
+
 
 
 onMounted(() => {

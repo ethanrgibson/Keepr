@@ -6,7 +6,7 @@ import { keepsService } from '@/services/KeepsService.js';
 import { profilesService } from '@/services/ProfilesService.js';
 import { vaultsService } from '@/services/VaultsService.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed, onMounted } from 'vue';
+import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
@@ -14,12 +14,12 @@ const profile = computed(() => AppState.activeProfile)
 const vaults = computed(() => AppState.vaults)
 const keeps = computed(() => AppState.profileKeeps)
 
-onMounted(() => {
+
+watch(route, () => {
   getProfile()
   getVaultsByProfileId()
   getKeepsByProfileId()
-
-})
+}, { immediate: true })
 
 async function getProfile() {
   try {
@@ -75,8 +75,8 @@ async function getKeepsByProfileId() {
           </div>
         </div>
         <div class="d-flex justify-content-center gap-4">
-          <span class="bg-purple rounded-pill px-2"> {{ keeps.length }} Keeps</span>
           <span class="bg-purple rounded-pill px-2">{{ vaults.length }} Vaults</span>
+          <span class="bg-purple rounded-pill px-2"> {{ keeps.length }} Keeps</span>
         </div>
       </div>
     </div>
