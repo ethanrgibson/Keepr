@@ -1,13 +1,30 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
 import AccountForm from '@/components/AccountForm.vue';
+import VaultCard from '@/components/VaultCard.vue';
+import { vaultsService } from '@/services/VaultsService.js';
+import { Pop } from '@/utils/Pop.js';
 
 
 
 const account = computed(() => AppState.account)
+const myVaults = computed(() => AppState.myVaults)
 
 
+onMounted(() => {
+  getLoggedInUsersVaults()
+})
+
+async function getLoggedInUsersVaults() {
+
+  try {
+    await vaultsService.getLoggedInUsersVaults()
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
 
 </script>
 
@@ -38,6 +55,16 @@ const account = computed(() => AppState.account)
     <div class="row">
       <div class="col-md-12">
         <AccountForm />
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div>
+        <h2>My Vaults</h2>
+      </div>
+      <div v-for="vault in myVaults" :key="vault.id" class="col-md-3">
+        <VaultCard :vaultProp="vault" />
       </div>
     </div>
   </div>

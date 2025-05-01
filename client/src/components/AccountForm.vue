@@ -59,7 +59,7 @@ async function updateAccount() {
           maxlength="1000">
       </div>
       <div class="text-end">
-        <button class="btn btn-outline-purple text-dark" type="submit">Save</button>
+        <button class="btn btn-purple text-dark" type="submit">Save</button>
       </div>
     </form>
   </div>
