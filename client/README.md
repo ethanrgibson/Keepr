@@ -38,4 +38,5 @@ Reqs: 5-9 - ✅
 
 Vault page shows keeps only in that vault(go through the vaultKeep to do that) - ✅
 
-Add my vaults and keeps section to account page. like vaults have a "myKeeps" [] in the app state that way I am always pointing to my vaults
+NEED HELP WITH MY VAULTCARDS AND KEEPS PROP, they are not showing up on my profile.
+
