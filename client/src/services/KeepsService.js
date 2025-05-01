@@ -24,10 +24,10 @@ class KeepsService {
     AppState.keeps.unshift(keep)
   }
 
-  async deleteKeep(keep) {
-    const response = await api.delete(`api/keeps/${keep.id}`)
+  async deleteKeep(keepId) {
+    const response = await api.delete(`api/keeps/${keepId}`)
     const keeps = AppState.keeps
-    const keepIndex = keeps.findIndex(keep => keep.id == keep.id)
+    const keepIndex = keeps.findIndex(keep => keep.id == keepId)
     keeps.splice(keepIndex, 1)
     logger.log(response.data)
   }

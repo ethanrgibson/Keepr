@@ -23,7 +23,7 @@ async function setActiveKeep(keepId) {
 }
 
 
-async function deleteKeep(keep) {
+async function deleteKeep(keepId) {
   try {
 
     const confirmed = await Pop.confirm('Sure you want to delete this keep?')
@@ -32,7 +32,7 @@ async function deleteKeep(keep) {
       return
     }
 
-    await keepsService.deleteKeep(keep)
+    await keepsService.deleteKeep(keepId)
   }
   catch (error) {
     Pop.error(error);
@@ -45,7 +45,7 @@ async function deleteKeep(keep) {
 
 <template>
   <div class="position-relative">
-    <div v-if="keep.creatorId == account?.id" @click="deleteKeep(keep)" class="p-1 delete-button" role="button"
+    <div v-if="keep.creatorId == account?.id" @click="deleteKeep(keep.id)" class="p-1 delete-button" role="button"
       title="Delete Keep">
       <span class=" bg-white rounded mdi mdi-alpha-x-box text-danger fs-2"></span>
     </div>
