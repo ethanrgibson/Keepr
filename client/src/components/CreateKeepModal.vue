@@ -72,6 +72,9 @@ async function createNewKeep() {
 <style lang="scss" scoped>
 label {
   display: block;
+}
+
+input {
   width: 100%;
 }
 
