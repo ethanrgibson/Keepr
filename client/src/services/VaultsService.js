@@ -1,6 +1,7 @@
 import { api } from "./AxiosService.js"
 import { Vault } from "@/models/Vault.js"
 import { AppState } from "@/AppState.js"
+import { logger } from "@/utils/Logger.js"
 
 class VaultsService {
   async createVault(vaultData) {
@@ -12,6 +13,7 @@ class VaultsService {
   async getVaultsByProfileId(profileId) {
     AppState.vaults = []
     const response = await api.get(`api/profiles/${profileId}/vaults`)
+    logger.log(response.data)
     const vaults = response.data.map(pojo => new Vault(pojo))
     AppState.vaults = vaults
 
